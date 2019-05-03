@@ -8,9 +8,9 @@ Server-side for the CBPQ services.
 2. `firebase serve --only functions,hosting`
 
 
-## Firebase cloud functions project
+## New Firebase project
 
-More or less the commands that follow. Keeping it here for quick reference.
+More or less the commands to create a Firebase project from the scratch with cloud functions. Keeping it here for quick reference.
 
 1. `npm install -g firebase-tools`
 2. `firebase init hosting`
