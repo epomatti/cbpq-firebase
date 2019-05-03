@@ -25,7 +25,12 @@ const mapXmlToJson = (html) => {
     } else {
       //console.log(html)
       //console.log(result)
-      console.dir(JSON.stringify(result));
+      // console.log(result.div.div);
+      console.log(JSON.stringify(result.div.div[1].div[0].div)); // dados
+      //console.log(JSON.stringify(result.div.div[1].div[1])); // img
+      //console.log(JSON.stringify(result.div.div[2]));
+
+      //console.dir(JSON.stringify(result));
     }
     return result
   });
