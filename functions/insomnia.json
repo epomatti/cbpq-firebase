@@ -1,0 +1,70 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2019-05-03T22:34:51.382Z",
+	"__export_source": "insomnia.desktop.app:v6.3.2",
+	"resources": [
+		{
+			"_id": "wrk_2b54c042b89e483db2a2bdd3a45143ea",
+			"created": 1556922778077,
+			"description": "",
+			"modified": 1556922778077,
+			"name": "CBPQ Firebase",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_2eaef24c10ca454ba1ab6b8710eac639",
+			"color": null,
+			"created": 1556922778134,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1556922778134,
+			"modified": 1556922778134,
+			"name": "New Environment",
+			"parentId": "wrk_2b54c042b89e483db2a2bdd3a45143ea",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_81ab536399e54fe2a0efab9e5dfb16bf",
+			"cookies": [],
+			"created": 1556922778149,
+			"modified": 1556922778149,
+			"name": "Default Jar",
+			"parentId": "wrk_2b54c042b89e483db2a2bdd3a45143ea",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_7878bb4ed6084fc2b9b5d0a4c8201ffd",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"cbpq\": \"90155\"\n}"
+			},
+			"created": 1556922796817,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_8277e1440ba740b8a73765bae1119d59",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1556922796817,
+			"method": "GET",
+			"modified": 1556922831502,
+			"name": "license cbpq",
+			"parameters": [],
+			"parentId": "wrk_2b54c042b89e483db2a2bdd3a45143ea",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "http://localhost:5001/cbpq-7e4c6/us-central1/app/license",
+			"_type": "request"
+		}
+	]
+}
