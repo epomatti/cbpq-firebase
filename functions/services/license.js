@@ -1,13 +1,11 @@
 const api = require('../integration/cbpq')
 const cleanHtml = require('../utils/cleanHtml.js')
-
-// TODO solve unhandled promises
-// error: (node:2280) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside of an async function without a catch block, or by rejecting a promise which was not handled with .catch(). (rejection id: 1)
-// (node:2280) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process with a non-zero exit code.
+const parseString = require('xml2js').parseString;
 
 const getLicense = (documents) => {
   return callGetLicense(documents)
     .then(html => cleanHtml.clear(html))
+    .then(html => mapXmlToJson(html))
 }
 
 const callGetLicense = (documents) => {
@@ -17,6 +15,20 @@ const callGetLicense = (documents) => {
   } else if (cpf) {
     return api.getLicenseCpf(cpf)
   }
+}
+
+const mapXmlToJson = (html) => {
+  parseString(html, function (err, result) {
+    if (err) {
+      console.error(err)
+      console.log(html)
+    } else {
+      //console.log(html)
+      //console.log(result)
+      console.dir(JSON.stringify(result));
+    }
+    return result
+  });
 }
 
 module.exports = { getLicense }
