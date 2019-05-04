@@ -32,9 +32,10 @@ const mapXmlToJson = (html) => {
     habilitacao: getValue2(dataRoot.children[13]),
     filiacao: getValue2(dataRoot.children[15]),
     validade: getValue1(dataRoot.children[17]),
-    image: `http${root.children[3].children[1].children[1].children[1].attr.src}`
+    image: `https:${root.children[3].children[1].children[1].children[1].attr.src}`,
+    emissao: new String(document.children[13].children[3].children[1].children[2].text).trim()
   }
-  console.log(license)
+  return license
 }
 
 const getValue1 = (node) => {

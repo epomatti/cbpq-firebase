@@ -9,7 +9,7 @@ app.get('/license', (request, response) => {
     .then(data => response.send(data))
     .catch(error => {
       console.error(error)
-      response.send({ error: 'Internal server failure.' })
+      response.send({ error: 'ERR001' })
     }
     )
 })
