@@ -1,6 +1,7 @@
 const api = require('../integration/cbpq')
 const cleanHtml = require('../utils/cleanHtml.js')
-const parseString = require('xml2js').parseString;
+var xmldoc = require('xmldoc');
+const util = require('util');
 
 const getLicense = (documents) => {
   return callGetLicense(documents)
@@ -18,22 +19,28 @@ const callGetLicense = (documents) => {
 }
 
 const mapXmlToJson = (html) => {
-  parseString(html, function (err, result) {
-    if (err) {
-      console.error(err)
-      console.log(html)
-    } else {
-      //console.log(html)
-      //console.log(result)
-      // console.log(result.div.div);
-      console.log(JSON.stringify(result.div.div[1].div[0].div)); // dados
-      //console.log(JSON.stringify(result.div.div[1].div[1])); // img
-      //console.log(JSON.stringify(result.div.div[2]));
+  const document = new xmldoc.XmlDocument(html);
+  const dataRoot = document.children[11].children[1];
+  const license = {
+    status: getValue1(dataRoot.children[1]),
+    cbpq: getValue2(dataRoot.children[3]),
+    categoria: getValue2(dataRoot.children[5]),
+    atleta: getValue2(dataRoot.children[7]),
+    clube: getValue2(dataRoot.children[9]),
+    federacao: getValue2(dataRoot.children[11]),
+    habilitacao: getValue2(dataRoot.children[13]),
+    filiacao: getValue2(dataRoot.children[15]),
+    validade: getValue1(dataRoot.children[17])
+  }
+  console.log(license)
+}
 
-      //console.dir(JSON.stringify(result));
-    }
-    return result
-  });
+const getValue1 = (node) => {
+  return node.children[1].children[3].children[1].firstChild.firstChild.text
+}
+
+const getValue2 = (node) => {
+  return node.children[1].children[3].children[1].firstChild.text
 }
 
 module.exports = { getLicense }
