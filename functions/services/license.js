@@ -20,7 +20,8 @@ const callGetLicense = (documents) => {
 
 const mapXmlToJson = (html) => {
   const document = new xmldoc.XmlDocument(html);
-  const dataRoot = document.children[11].children[1];
+  const root = document.children[11]
+  const dataRoot = root.children[1];
   const license = {
     status: getValue1(dataRoot.children[1]),
     cbpq: getValue2(dataRoot.children[3]),
@@ -30,7 +31,8 @@ const mapXmlToJson = (html) => {
     federacao: getValue2(dataRoot.children[11]),
     habilitacao: getValue2(dataRoot.children[13]),
     filiacao: getValue2(dataRoot.children[15]),
-    validade: getValue1(dataRoot.children[17])
+    validade: getValue1(dataRoot.children[17]),
+    image: `http${root.children[3].children[1].children[1].children[1].attr.src}`
   }
   console.log(license)
 }
