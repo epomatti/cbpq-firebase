@@ -1,8 +1,8 @@
 const api = require('../integration/cbpq')
 const cleanHtml = require('../utils/cleanHtml.js')
 var xmldoc = require('xmldoc');
-const util = require('util');
 
+// TODO Redesign
 const getLicense = (documents) => {
   return callGetLicense(documents)
     .then(html => cleanHtml.clear(html))
@@ -22,6 +22,12 @@ const mapXmlToJson = (html) => {
   const document = new xmldoc.XmlDocument(html);
   const root = document.children[11]
   const dataRoot = root.children[1];
+
+  // If athlete is not found
+  if (!dataRoot) {
+    throw 404
+  }
+
   const license = {
     status: getValue1(dataRoot.children[1]),
     cbpq: getValue2(dataRoot.children[3]),
