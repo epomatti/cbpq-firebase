@@ -4,16 +4,17 @@ handleError = (err, req, res, next) => {
   if (err.httpStatus) {
     res.status(err.httpStatus).send(err.message)
   } else {
-    res.status(500).send({ code: 0, message: 'Falha inesperada' })
     log(err)
+    res.status(500).send('Falha inesperada')
   }
 }
 
 log = (err) => {
   var docRef = db.collection('errors').doc();
   docRef.set({
-    date: Date.now(),
-    error: err
+    message: err.message,
+    stack: err.stack,
+    date: Date.now()
   });
 }
 
