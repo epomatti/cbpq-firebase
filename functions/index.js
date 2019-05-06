@@ -4,23 +4,16 @@ const service = require('./services/license')
 
 const app = express()
 
-app.get('/license/cbpq/:cbpq', (req, res) => {
+app.get('/license/cbpq/:cbpq', (req, res, next) => {
   service.getLicenseCbpq(req.params.cbpq)
     .then(data => res.send(data))
-    .catch(error => {
-      console.error(error)
-      res.send({ error: 'ERR001' })
-    }
-    )
+    .catch(next)
 })
 
-app.get('/license/cpf/:cpf', (req, res) => {
+app.get('/license/cpf/:cpf', (req, res, next) => {
   service.getLicenseCpf(req.params.cpf)
     .then(data => res.send(data))
-    .catch(error => {
-      res.send({ error: 'ERR001' })
-    }
-    )
+    .catch(next)
 })
 
 exports.app = functions.https.onRequest(app)
