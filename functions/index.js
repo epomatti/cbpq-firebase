@@ -1,6 +1,7 @@
 const functions = require('firebase-functions')
 const express = require('express')
 const service = require('./services/license')
+const handleError = require('./utils/handler').handleError
 
 const app = express()
 
@@ -16,13 +17,6 @@ app.get('/license/cpf/:cpf', (req, res, next) => {
     .catch(next)
 })
 
-app.use(function (err, req, res, next) {
-  if (err.httpStatus) {
-    res.status(err.httpStatus).send(err.message)
-  } else {
-    console.error(err)
-    res.status(500).send({ code: 0, message: 'Falha inesperada' })
-  }
-})
+app.use(handleError)
 
 exports.app = functions.https.onRequest(app)
