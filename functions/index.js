@@ -5,26 +5,22 @@ const service = require('./services/license')
 const app = express()
 
 app.get('/license/cbpq/:cbpq', (req, res) => {
-  const document = {
-    cbpq: req.params.cbpq
-  }
-  getLicense(document, res)
+  service.getLicenseCbpq(req.params.cbpq)
+    .then(data => res.send(data))
+    .catch(error => {
+      console.error(error)
+      res.send({ error: 'ERR001' })
+    }
+    )
 })
 
 app.get('/license/cpf/:cpf', (req, res) => {
-  const document = {
-    cpf: req.params.cpf
-  }
-  getLicense(document, res)
-})
-
-const getLicense = (document, res) => {
-  service.getLicense(document)
+  service.getLicenseCpf(req.params.cpf)
     .then(data => res.send(data))
     .catch(error => {
       res.send({ error: 'ERR001' })
     }
     )
-}
+})
 
 exports.app = functions.https.onRequest(app)

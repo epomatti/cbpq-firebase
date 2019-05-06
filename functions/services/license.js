@@ -2,20 +2,19 @@ const api = require('../integration/cbpq')
 const cleanHtml = require('../utils/cleanHtml.js')
 var xmldoc = require('xmldoc');
 
-// TODO Redesign
-const getLicense = (documents) => {
-  return callGetLicense(documents)
-    .then(html => cleanHtml.clear(html))
-    .then(html => mapXmlToJson(html))
+const getLicenseCbpq = (cbpq) => {
+  return api.getLicenseCbpq(cbpq)
+    .then(html => process(html))
 }
 
-const callGetLicense = (documents) => {
-  const { cbpq, cpf } = documents;
-  if (cbpq) {
-    return api.getLicenseCbpq(cbpq)
-  } else if (cpf) {
-    return api.getLicenseCpf(cpf)
-  }
+const getLicenseCpf = (cpf) => {
+  return api.getLicenseCpf(cpf)
+    .then(html => process(html))
+}
+
+const process = (html) => {
+  const tes = cleanHtml.clear(html)
+  return mapXmlToJson(tes)
 }
 
 const mapXmlToJson = (html) => {
@@ -52,4 +51,4 @@ const getValue2 = (node) => {
   return node.children[1].children[3].children[1].firstChild.text
 }
 
-module.exports = { getLicense }
+module.exports = { getLicenseCbpq, getLicenseCpf }
