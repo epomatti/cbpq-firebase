@@ -5,9 +5,8 @@ const toJson = (html) => {
   const root = document.children[11]
   const dataRoot = root.children[1];
 
-  // If athlete is not found
   if (!dataRoot) {
-    throw errors.ERR001
+    throw { httpStatus: 404, message: 'Atleta não encontrado' }
   }
 
   const license = {
