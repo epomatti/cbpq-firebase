@@ -4,12 +4,12 @@ handleError = (err, req, res, next) => {
   if (err.httpStatus) {
     res.status(err.httpStatus).send(err.message)
   } else {
-    log(err)
     res.status(500).send('Falha inesperada')
+    logAsync(err)
   }
 }
 
-log = (err) => {
+logAsync = async (err) => {
   var docRef = db.collection('errors').doc();
   docRef.set({
     message: err.message,
