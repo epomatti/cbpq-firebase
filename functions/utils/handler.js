@@ -1,7 +1,8 @@
 const db = require('./firestore').db
+const ValidationError = require('./exception')
 
 handleError = (err, req, res, next) => {
-  if (err.httpStatus) {
+  if (err instanceof ValidationError) {
     res.status(err.httpStatus).send(err.message)
   } else {
     res.status(500).send('Falha inesperada')

@@ -1,4 +1,5 @@
 var xmldoc = require('xmldoc');
+const ValidationError = require('./exception')
 
 const toJson = (html) => {
   const document = new xmldoc.XmlDocument(html);
@@ -6,7 +7,7 @@ const toJson = (html) => {
   const dataRoot = root.children[1];
 
   if (!dataRoot) {
-    throw { httpStatus: 404, message: 'Atleta não encontrado' }
+    throw new ValidationError(404, 'Atleta não encontrado')
   }
 
   const license = {

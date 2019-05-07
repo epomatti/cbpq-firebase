@@ -1,6 +1,7 @@
 const api = require('../io/cbpq')
 const cleanHtml = require('../utils/cleanHtml.js')
 const mapping = require('../utils/mapping.js')
+const ValidationError = require('../utils/exception')
 
 const getLicenseCbpq = (cbpq) => {
   return api.getLicenseCbpq(cbpq)
@@ -17,7 +18,11 @@ const process = (html, document) => {
     const cleanDom = cleanHtml.clear(html)
     return mapping.toJson(cleanDom)
   } catch (error) {
-    throw new Error(`Failed to process document ${document}`)
+    if (error instanceof ValidationError) {
+      throw error
+    } else {
+      throw new Error(`Failed to process document ${document}`)
+    }
   }
 }
 
