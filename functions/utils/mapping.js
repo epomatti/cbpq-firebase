@@ -21,8 +21,10 @@ const toJson = (html) => {
     filiacao: getValue2(dataRoot.children[15]),
     validade: getValue1(dataRoot.children[17]),
     image: `https:${root.children[3].children[1].children[1].children[1].attr.src}`,
-    emissao: new String(document.children[13].children[3].children[1].children[2].text).trim()
+    emissao: getDataEmissao(document)
+
   }
+  console.log(document.children[13].children[3])
   return license
 }
 
@@ -32,6 +34,15 @@ const getValue1 = (node) => {
 
 const getValue2 = (node) => {
   return node.children[1].children[3].children[1].firstChild.text
+}
+
+const getDataEmissao = (document) => {
+  const holder = document.children[13].children[3]
+  if (holder) {
+    return new String(holder.children[1].children[2].text).trim()
+  } else {
+    return null
+  }
 }
 
 module.exports = { toJson }
