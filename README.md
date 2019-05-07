@@ -5,7 +5,8 @@ Server-side for the CBPQ services.
 ## Running the code
 
 1. `npm install -g firebase-tools`
-2. `firebase serve --only functions,hosting`
+2. Run `npm install`on functions directory
+3. `firebase serve --only functions,hosting`
 
 
 ## New Firebase project
