@@ -1,8 +1,8 @@
-/* 
+/*
 * To run this program use:
 * node validate.js <start> <end> <threads>
-* 
-* Exemple: node validate.js 0 99 3
+*
+* Exemple: node validate.js 0 0 1
 */
 
 const axios = require('axios')

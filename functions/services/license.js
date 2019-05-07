@@ -17,7 +17,7 @@ const process = (html, document) => {
     const cleanDom = cleanHtml.clear(html)
     return mapping.toJson(cleanDom)
   } catch (error) {
-    new Error(`Failed to process document: ${document}. Original stack trace: [${error.stack}]`)
+    throw new Error(`Failed to process document ${document}`)
   }
 }
 
