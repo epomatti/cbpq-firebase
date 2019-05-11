@@ -8,8 +8,6 @@ Server-side for the CBPQ services.
 2. Run `npm install` in functions directory
 3. `firebase serve --only functions,hosting`
 
-Depending of your firebase-tools version you'll need to run `npm install --save-dev firebase-functions-test` in your functions directory.
-
 ## New Firebase project
 
 More or less the commands to create a Firebase project from the scratch with cloud functions. Keeping it here for quick reference.
