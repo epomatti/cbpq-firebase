@@ -24,7 +24,6 @@ const toJson = (html) => {
     emissao: getDataEmissao(document)
 
   }
-  console.log(document.children[13].children[3])
   return license
 }
 
