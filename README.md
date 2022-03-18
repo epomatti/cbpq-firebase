@@ -2,20 +2,10 @@
 
 Server-side for the CBPQ services.
 
-## Running the code
+```bash
+npm i -g firebase-tools
+npm install # run it in the functions directory
+firebase serve --only functions,hosting
+```
 
-1. `npm i -g firebase-tools`
-2. Run `npm install` in functions directory
-3. `firebase serve --only functions,hosting`
-
-## New Firebase project
-
-More or less the commands to create a Firebase project from the scratch with cloud functions. Keeping it here for quick reference.
-
-1. `npm i -g firebase-tools`
-2. `firebase init hosting`
-3. `firebase init functions`
-4. `cd functions`
-5. `npm i express --save`
-6. `firebase serve --only functions,hosting --project <your project name>`
-7. `firebase deploy`
+Flutter App repository: https://github.com/epomatti/cbpq-flutter
